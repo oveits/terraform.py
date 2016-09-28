@@ -25,14 +25,20 @@ import json
 import os
 import re
 
+# OV added:
+#import pdb
+
 VERSION = '0.3.0pre'
 
 
 def tfstates(root=None):
-    root = root or os.getcwd()
+    #pdb.set_trace()
+    #root = root or os.getcwd()
+    root = os.getcwd()
     for dirpath, _, filenames in os.walk(root):
         for name in filenames:
             if os.path.splitext(name)[-1] == '.tfstate':
+                #pdb.set_trace()
                 yield os.path.join(dirpath, name)
 
 
@@ -367,6 +373,7 @@ def openstack_host(resource, module_name):
 @parses('aws_instance')
 @calculate_mantl_vars
 def aws_host(resource, module_name):
+    #pdb.set_trace()
     name = resource['primary']['attributes']['tags.Name']
     raw_attrs = resource['primary']['attributes']
 
